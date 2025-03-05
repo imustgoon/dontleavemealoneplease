@@ -15,7 +15,6 @@
             align-items: center;
             overflow: hidden;
         }
-
         video {
             max-width: 100%;
             max-height: 100vh;
@@ -25,31 +24,31 @@
 </head>
 <body>
     <video id="myVideo" width="640" height="360" controls>
-        <source src="https://drive.google.com/uc?id=152SSmt1xDY4sXjhwQik4uq9mQVCJQxF5" type="video/mp4">
+        <source src="https://drive.google.com/uc?export=download&id=152SSmt1xDY4sXjhwQik4uq9mQVCJQxF5" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
     <script>
         const video = document.getElementById('myVideo');
         
-        // Автовоспроизведение с обработкой ошибок
+        // Попытка автовоспроизведения
         const playPromise = video.play();
         if (playPromise !== undefined) {
             playPromise.catch(error => {
-                console.log('Автовоспроизведение заблокировано');
+                console.log('Автовоспроизведение заблокировано:', error);
             });
         }
 
         video.addEventListener('ended', () => {
             const link = document.createElement('a');
-            link.href = 'https://drive.google.com/uc?id=1vPU6kQFVX-M5BRp-J6snnRQOwhcLyJGW&export=download';
+            link.href = 'https://drive.google.com/uc?export=download&id=1vPU6kQFVX-M5BRp-J6snnRQOwhcLyJGW';
             link.download = 'tęñь-dićkтætõpå.kocho';
             
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
             
-            alert('Файл начал загружаться!');
+            alert('Файл начал загружаться! Если загрузка не началась, проверьте ссылку вручную.');
         });
     </script>
 </body>
