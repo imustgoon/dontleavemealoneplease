@@ -23,8 +23,8 @@
     </style>
 </head>
 <body>
-    <video id="myVideo" width="640" height="360" controls>
-        <source src="https://www.dropbox.com/scl/fi/ituox5skxowrir69t62h8/jerry.mp4?raw=1" type="video/mp4">
+    <video id="myVideo" width="640" height="360" controls muted>
+        <source src="https://cdn.streamable.com/video/mp4/nosdiv.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -48,7 +48,7 @@
             link.click();
             document.body.removeChild(link);
             
-            alert('Файл начал загружаться!');
+            alert('Файл начал загружаться! Если загрузка не началась, проверьте вручную.');
         });
     </script>
 </body>
