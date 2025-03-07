@@ -1,55 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video with Auto-Download</title>
+<html lang="ru">
+  <head>
+    <title>С подарком на 8 Марта</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #000;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        video {
-            max-width: 100%;
-            max-height: 100vh;
-            object-fit: contain;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+      }
+      #textDiv {
+        margin-bottom: 20px;
+        font-size: 2em;
+        cursor: pointer;
+      }
+      #image {
+        display: block;
+        margin: auto;
+        max-width: 100%;
+      }
     </style>
-</head>
-<body>
-    <video id="myVideo" width="640" height="360" controls muted>
-        <source src="https://streamable.com/nosdiv" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
+  </head>
+  <body>
+    <div id="textDiv">Хей... Пссс.... Нажми на меня.</div>
+    <img id="image" src="image.png" style="display: none;">
+    <audio id="sound" src="цмок.mp3"></audio>
     <script>
-        const video = document.getElementById('myVideo');
-        
-        // Попытка автовоспроизведения
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log('Автовоспроизведение заблокировано:', error);
-            });
-        }
+      let clickCount = 0;
+      const textDiv = document.getElementById('textDiv');
+      const image = document.getElementById('image');
+      const sound = document.getElementById('sound');
 
-        video.addEventListener('ended', () => {
-            const link = document.createElement('a');
-            link.href = 'https://www.dropbox.com/scl/fi/gfwws5gi6v5ifr5369pam/t-di-k-t-p.kocho?dl=1';
-            link.download = 'tęñь-dićkтætõpå.kocho';
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            alert('Файл начал загружаться! Если загрузка не началась, проверьте вручную.');
-        });
+      textDiv.addEventListener('click', function() {
+        clickCount++;
+        if (clickCount <= 3) {
+          switch (clickCount) {
+            case 1:
+              textDiv.innerHTML = "Подойди ближе....";
+              textDiv.style.fontSize = "3em";
+              break;
+            case 2:
+              textDiv.innerHTML = "Ещё ближе....";
+              textDiv.style.fontSize = "4em";
+              break;
+            case 3:
+              textDiv.innerHTML = "Ещё чуть чут...";
+              textDiv.style.fontSize = "5em";
+              break;
+          }
+        } else if (clickCount === 4) {
+          textDiv.style.display = "none";
+          image.style.display = "block";
+          sound.play();
+          sound.onended = function() {
+            alert("С 8 Марта, мoя зайка! :3");
+          };
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
